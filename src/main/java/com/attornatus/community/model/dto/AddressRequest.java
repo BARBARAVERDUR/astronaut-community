@@ -6,14 +6,14 @@ public class AddressRequest {
     
     private String street;
     
-    private Integer CEP;
+    private String CEP;
 
-    private Integer number;
+    private String number;
 
     public AddressRequest() {
     }
 
-    public AddressRequest(String street, Integer CEP, Integer number) {
+    public AddressRequest(String street, String CEP, String number) {
         this.street = street;
         this.CEP = CEP;
         this.number = number;
@@ -27,19 +27,19 @@ public class AddressRequest {
         this.street = street;
     }
 
-    public Integer getCEP() {
+    public String getCEP() {
         return CEP;
     }
 
-    public void setCEP(Integer CEP) {
+    public void setCEP(String CEP) {
         this.CEP = CEP;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
     
