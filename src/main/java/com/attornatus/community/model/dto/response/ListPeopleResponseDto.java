@@ -21,6 +21,10 @@ public class ListPeopleResponseDto {
     public void setListPeople(List<PersonResponseHomeDto> listPeople) {
         this.listPeople = listPeople;
     }
+
+    public void setPeople(List<PersonResponseDetailsDto> map) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

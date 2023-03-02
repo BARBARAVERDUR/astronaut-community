@@ -1,6 +1,7 @@
 
 package com.attornatus.community.mappers;
 
+import com.attornatus.community.model.dto.request.PersonRequestDto;
 import com.attornatus.community.model.dto.response.ListAddressResponseDto;
 import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
 import com.attornatus.community.model.entity.Person;
@@ -8,6 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDetailMapper {
+    
+    public Person map(PersonRequestDto request){
+        
+        Person person = new Person();
+        
+        person.setName(request.getName());
+        person.setBirthdate(request.getBirthdate());
+        person.setAddress(request.getAddress());
+        
+        return person;
+    }
     
     public PersonResponseDetailsDto map(Person person){
         
@@ -21,6 +33,8 @@ public class PersonDetailMapper {
         return response;
     }
     
+    
+    
     public List<PersonResponseDetailsDto> map (List<Person> people){
         
        List<PersonResponseDetailsDto> listResponseDetail = new ArrayList<>();
@@ -31,5 +45,6 @@ public class PersonDetailMapper {
         
        return listResponseDetail; 
     }
+    
     
 }
