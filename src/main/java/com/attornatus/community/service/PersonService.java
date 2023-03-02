@@ -1,6 +1,7 @@
 
 package com.attornatus.community.service;
 
+/*
 import com.attornatus.community.mappers.PersonMapper;
 import com.attornatus.community.model.dto.ListPeopleResponse;
 import com.attornatus.community.model.dto.PersonRequest;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonService {
     
-    @Autowired
+  /*  @Autowired
     private PersonRepository personRepository;
     
     @Autowired
@@ -74,4 +75,5 @@ public class PersonService {
         
      return mapper.map(findByID(id));   
     }
-}
+
+}*/

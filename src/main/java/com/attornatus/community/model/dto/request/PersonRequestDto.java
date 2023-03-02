@@ -1,29 +1,27 @@
 
-package com.attornatus.community.model.dto;
+package com.attornatus.community.model.dto.request;
 
 import com.attornatus.community.model.entity.Address;
 import java.util.Date;
 import java.util.List;
 
-
-
-public class PersonRequest {
-  
-    /*Dados que vou solicitar desde ás vistas p/criar uma pessoa nova*/
+public class PersonRequestDto {
     private String name;
    
     private Date birthdate;
    
     private List<Address> address;
 
-    public PersonRequest() {
+    public PersonRequestDto() {
     }
 
-    public PersonRequest(String name, Date birthdate, List<Address> address) {
+    public PersonRequestDto(String name, Date birthdate, List<Address> address) {
         this.name = name;
         this.birthdate = birthdate;
         this.address = address;
     }
+
+   
 
     public String getName() {
         return name;
@@ -49,7 +47,5 @@ public class PersonRequest {
         this.address = address;
     }
      
-    
-    
     
 }

@@ -25,17 +25,27 @@ public class Address {
     
     @Column(name="NUMBER")
     private String number;
+    
+    @Column(name="CITY")
+    private String city;
+    
+    @Column(name="FAVORITE")
+    private Boolean favorite;
 
     
     public Address() {
     }
 
-    public Address(Long id, String street, String CEP, String number) {
+    public Address(Long id, String street, String CEP, String number, String city, Boolean favorite) {
         this.id = id;
         this.street = street;
         this.CEP = CEP;
         this.number = number;
+        this.city = city;
+        this.favorite = favorite;
     }
+
+    
     
     public String getNumber() {
         return number;
@@ -69,10 +79,28 @@ public class Address {
         this.CEP = CEP;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     public String toString() {
-        return "Address{" + "id=" + id + ", street=" + street + ", CEP=" + CEP + ", number=" + number + '}';
+        return "Address{" + "id=" + id + ", street=" + street + ", CEP=" + CEP + ", number=" + number + ", city=" + city + ", favorite=" + favorite + '}';
     }
+
+    
     
     
 }

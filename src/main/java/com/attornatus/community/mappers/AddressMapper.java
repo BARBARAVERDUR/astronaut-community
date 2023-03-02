@@ -1,8 +1,8 @@
 
 package com.attornatus.community.mappers;
 
-import com.attornatus.community.model.dto.AddressRequest;
-import com.attornatus.community.model.dto.AddressResponse;
+import com.attornatus.community.model.dto.request.AddressRequestDto;
+import com.attornatus.community.model.dto.response.AddressResponseHomeDto;
 import com.attornatus.community.model.entity.Address;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,29 +11,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class AddressMapper {
     
-    public Address map(AddressRequest request){
+    public Address map(AddressRequestDto request){
         
         Address address = new Address();
         
         address.setStreet(request.getStreet());
         address.setNumber( request.getNumber());
         address.setCEP(request.getCEP());
+        address.setCity(request.getCity());
+        address.setFavorite(request.getFavorite());
         
         return address;
     }
     
-    public AddressResponse map(Address address){
+    public AddressResponseHomeDto map(Address address){
         
-        AddressResponse response = new AddressResponse();
+        AddressResponseHomeDto response = new AddressResponseHomeDto();
         
-        response.setAddressDto(address.getStreet() + " " + address.getNumber());
+        response.setAddressHome(address.getStreet() + " " + address.getNumber() + " " + address.getCity());
         
         return response;
     }
     
-    public List<AddressResponse> map (List<Address> addresses){
+    public List<AddressResponseHomeDto> map (List<Address> addresses){
         
-        List<AddressResponse> listResponse = new  ArrayList<>();
+        List<AddressResponseHomeDto> listResponse = new  ArrayList<>();
         
         for (Address address : addresses) {
             listResponse.add(map(address));

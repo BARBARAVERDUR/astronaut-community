@@ -1,9 +1,10 @@
 
 package com.attornatus.community.mappers;
 
-import com.attornatus.community.model.dto.AddressResponse;
-import com.attornatus.community.model.dto.PersonRequest;
-import com.attornatus.community.model.dto.PersonResponse;
+
+import com.attornatus.community.model.dto.request.PersonRequestDto;
+import com.attornatus.community.model.dto.response.AddressResponseHomeDto;
+import com.attornatus.community.model.dto.response.PersonResponseHomeDto;
 import com.attornatus.community.model.entity.Person;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonMapper {
     
-    public Person map(PersonRequest request){
+    public Person map(PersonRequestDto request){
         
         Person person = new Person();
         
@@ -23,26 +24,27 @@ public class PersonMapper {
         return person;
     }
     
-    public PersonResponse map(Person person){
+    public PersonResponseHomeDto map(Person person){
         
-        PersonResponse response = new PersonResponse();
+        PersonResponseHomeDto response = new PersonResponseHomeDto();
         
         response.setName(person.getName());
-        response.setAddress((AddressResponse) person.getAddress());
+        response.setAddressHome((AddressResponseHomeDto) person.getAddress());
         response.setBirthdate(person.getBirthdate());
         
         return response;
     }
     
     
-    public List<PersonResponse> map (List<Person> people){
+    public List<PersonResponseHomeDto> map (List<Person> people){
         
-       List<PersonResponse> listResponse = new ArrayList<>();
+       List<PersonResponseHomeDto> listResponseHome = new ArrayList<>();
        
-        for (Person person : people) {
-            listResponse.add(map(person));   
-        }
-       return listResponse; 
+       for(Person person : people){
+           listResponseHome.add((PersonResponseHomeDto) map(people));
+       }
+        
+       return listResponseHome; 
     }
     
     
