@@ -14,7 +14,7 @@ import org.springframework.data.annotation.Id;
 
 
 @Entity
-@Table(name = "PERSON")
+@Table(name = "Person")
 public class Person {
     
     @Id

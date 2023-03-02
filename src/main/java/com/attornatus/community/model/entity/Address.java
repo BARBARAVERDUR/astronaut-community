@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import org.springframework.data.annotation.Id;
 
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "Address")
 public class Address {
     
     @Id
