@@ -21,27 +21,27 @@ public class Address {
     private String street;
     
     @Column(name="CEP")
-    private Integer CEP;
+    private String CEP;
     
     @Column(name="NUMBER")
-    private Integer number;
+    private String number;
 
     
     public Address() {
     }
 
-    public Address(Long id, String street, Integer CEP, Integer number) {
+    public Address(Long id, String street, String CEP, String number) {
         this.id = id;
         this.street = street;
         this.CEP = CEP;
         this.number = number;
     }
     
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -61,11 +61,11 @@ public class Address {
         this.street = street;
     }
 
-    public Integer getCEP() {
+    public String getCEP() {
         return CEP;
     }
 
-    public void setCEP(Integer CEP) {
+    public void setCEP(String CEP) {
         this.CEP = CEP;
     }
 
