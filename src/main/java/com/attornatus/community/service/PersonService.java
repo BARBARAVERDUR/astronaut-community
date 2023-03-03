@@ -5,11 +5,11 @@ package com.attornatus.community.service;
 import com.attornatus.community.mappers.PersonDetailMapper;
 
 import com.attornatus.community.model.dto.request.PersonRequestDto;
-/*import com.attornatus.community.model.dto.response.ListPeopleResponseDto;*/
+import com.attornatus.community.model.dto.response.ListPeopleResponseDto;
 import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
 import com.attornatus.community.model.entity.Person;
 import com.attornatus.community.repository.PersonRepository;
-/*import java.util.List;*/
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,15 +31,15 @@ public class PersonService {
         return mapperDetail.map(person);
     }
     
-   /* public ListPeopleResponseDto findAll(){
+    public ListPeopleResponseDto findAll(){
         
         List<Person> people = personRepository.findAll();
         
         ListPeopleResponseDto peopleResponse = new ListPeopleResponseDto();
-        peopleResponse.setPeople(mapperDetail.map(people));
+        peopleResponse.setListPeople(mapperDetail.map(people));
         
         return peopleResponse;
-    }*/
+    }
     
     public void delete(Integer id) throws Exception {
 

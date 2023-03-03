@@ -4,8 +4,6 @@ package com.attornatus.community.controllers;
 import com.attornatus.community.model.dto.request.PersonRequestDto;
 import com.attornatus.community.model.dto.response.ListPeopleResponseDto;
 import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
-import com.attornatus.community.model.dto.response.PersonResponseHomeDto;
-import com.attornatus.community.service.PersonHomeService;
 import com.attornatus.community.service.PersonService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class PersonController {
    
-    @Autowired
-    private PersonHomeService homeService;
     
     @Autowired
     private PersonService personService;
@@ -39,15 +35,9 @@ public class PersonController {
         return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(personService.create(request));
     }
     
-    @PostMapping
-    @Transactional
-    public ResponseEntity<PersonResponseHomeDto> saveHome(@RequestBody PersonRequestDto request){
-        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(homeService.create(request));
-    }
-    
     @GetMapping
     public ResponseEntity<ListPeopleResponseDto> list(){
-        return ResponseEntity.ok().body(homeService.findAll());
+        return ResponseEntity.ok().body(personService.findAll());
     }
     
     @DeleteMapping("/{id}")

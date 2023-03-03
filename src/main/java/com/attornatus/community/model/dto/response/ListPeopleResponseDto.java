@@ -5,26 +5,24 @@ import java.util.List;
 
 public class ListPeopleResponseDto {
     
-    private List<PersonResponseHomeDto> listPeople;
+    private List<PersonResponseDetailsDto> listPeople;
 
     public ListPeopleResponseDto() {
     }
 
-    public ListPeopleResponseDto(List<PersonResponseHomeDto> listPeople) {
+    public ListPeopleResponseDto(List<PersonResponseDetailsDto> listPeople) {
         this.listPeople = listPeople;
     }
 
-    public List<PersonResponseHomeDto> getListPeople() {
+    public List<PersonResponseDetailsDto> getListPeople() {
         return listPeople;
     }
 
-    public void setListPeople(List<PersonResponseHomeDto> listPeople) {
+    public void setListPeople(List<PersonResponseDetailsDto> listPeople) {
         this.listPeople = listPeople;
     }
 
-    public void setPeople(List<PersonResponseDetailsDto> map) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
     
     
 }
