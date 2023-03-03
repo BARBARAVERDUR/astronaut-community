@@ -7,7 +7,10 @@ import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
 import com.attornatus.community.model.entity.Person;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class PersonDetailMapper {
     
     public Person map(PersonRequestDto request){
