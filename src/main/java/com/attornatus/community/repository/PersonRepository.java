@@ -15,9 +15,5 @@ public interface PersonRepository extends JpaRepository<Person, Integer>{
     ("SELECT p FROM Person p WHERE p.name = :name")
     public List<Person> lookForName(@Param("name")String name);
 
-    @Query
-    ("SELECT p FROM Persona p WHERE P.address.CEP = :CEP")
-    public List<Person> lookForCep(@Param("CEP") String CEP);
-    
     
 }
