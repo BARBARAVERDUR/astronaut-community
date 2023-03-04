@@ -54,6 +54,9 @@ public class PersonService {
         Person person = findByID(id);
         
         person.setName(request.getName());
+        
+        
+        
         person.setBirthdate(request.getBirthdate());
         
         Long idAddresResponse = request.getIdAddress();
@@ -101,3 +104,6 @@ public class PersonService {
         }
     }
 }
+
+
+//Hacer método con formateo de fecha en llamar en el Mapper

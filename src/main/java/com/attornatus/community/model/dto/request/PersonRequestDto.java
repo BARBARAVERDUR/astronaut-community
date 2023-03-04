@@ -2,20 +2,21 @@
 package com.attornatus.community.model.dto.request;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
-
+@JsonFormat
 public class PersonRequestDto {
     private String name;
    
-    private Date birthdate;
+    private String birthdate;
    
     private Long idAddress;
 
     public PersonRequestDto() {
     }
 
-    public PersonRequestDto(String name, Date birthdate, Long idAddress) {
+    public PersonRequestDto(String name, String birthdate, Long idAddress) {
         this.name = name;
         this.birthdate = birthdate;
         this.idAddress = idAddress;
@@ -29,11 +30,11 @@ public class PersonRequestDto {
         this.name = name;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

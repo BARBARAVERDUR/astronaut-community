@@ -13,12 +13,13 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
+
 import java.util.List;
 
 
 
 @Entity
-@Table(name = "Person")
+@Table(name = "PERSON")
 public class Person implements Serializable {
     
     @Id
