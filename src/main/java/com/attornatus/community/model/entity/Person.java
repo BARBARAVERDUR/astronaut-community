@@ -9,14 +9,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
+
 import java.util.List;
 
 
 
 @Entity
-@Table(name = "Person")
+@Table(name = "PERSON")
 public class Person implements Serializable {
     
     @Id
@@ -27,6 +30,7 @@ public class Person implements Serializable {
     @Column(name="NAME")
     private String name;
     
+    @Temporal(TemporalType.DATE)
     @Column(name="BIRTHDATE")
     private Date birthdate;
     

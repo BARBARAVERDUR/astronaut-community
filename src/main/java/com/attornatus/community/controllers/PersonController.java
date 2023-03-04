@@ -4,6 +4,10 @@ package com.attornatus.community.controllers;
 import com.attornatus.community.model.dto.request.PersonRequestDto;
 import com.attornatus.community.model.dto.response.ListPeopleResponseDto;
 import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
+import com.attornatus.community.model.entity.Address;
+import com.attornatus.community.model.entity.Person;
+import com.attornatus.community.repository.AddressRepository;
+import com.attornatus.community.repository.PersonRepository;
 import com.attornatus.community.service.PersonService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +27,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/person")
 @CrossOrigin(origins = "*")
 public class PersonController {
-   
-    
+
     @Autowired
     private PersonService personService;
     
+    @Autowired
+    private PersonRepository personRepository;
+    
+    @Autowired
+    private AddressRepository addressRepository;
     
     @PostMapping
     @Transactional
@@ -60,4 +68,20 @@ public class PersonController {
         return ResponseEntity.ok().body(personService.update(request, id));
     }
     
+    @PostMapping("/{id}")
+    public ResponseEntity<PersonResponseDetailsDto> selectFavorite(
+    @PathVariable Integer id
+    ) throws Exception{
+        
+        PersonResponseDetailsDto personDto= personService.getResponseById(id);
+        
+        Long idAddress = personDto.getIdAddress();
+        
+        Person person = personRepository.getById(id);
+        Address address = addressRepository.getById(idAddress);
+         
+        personService.favorite(person, address);
+
+        return ResponseEntity.ok().body(personDto);
+    }
 }

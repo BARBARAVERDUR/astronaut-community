@@ -7,6 +7,7 @@ import com.attornatus.community.mappers.PersonDetailMapper;
 import com.attornatus.community.model.dto.request.PersonRequestDto;
 import com.attornatus.community.model.dto.response.ListPeopleResponseDto;
 import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
+import com.attornatus.community.model.entity.Address;
 import com.attornatus.community.model.entity.Person;
 import com.attornatus.community.repository.PersonRepository;
 import java.util.List;
@@ -53,8 +54,19 @@ public class PersonService {
         Person person = findByID(id);
         
         person.setName(request.getName());
+        
+        
+        
         person.setBirthdate(request.getBirthdate());
-        person.setAddress(request.getAddress());
+        
+        Long idAddresResponse = request.getIdAddress();
+        
+        Address address = person.getAddress().stream()
+                .filter(a -> a.getId().equals(idAddresResponse))
+                .findFirst()
+                .orElse(null);
+             
+        person.setAddress((List<Address>) address);
   
         personRepository.save(person);
         return mapperDetail.map(person);
@@ -77,4 +89,21 @@ public class PersonService {
      return mapperDetail.map(findByID(id));   
     }
 
+    //favorite
+   
+    public void favorite(Person person, Address address){
+        
+        List <Address> addresses = person.getAddress();
+        
+        for (Address a : addresses) {
+            if(a.equals(address)){
+                a.setFavorite(true);
+            }else{
+                a.setFavorite(false);
+            }
+        }
+    }
 }
+
+
+//Hacer método con formateo de fecha en llamar en el Mapper

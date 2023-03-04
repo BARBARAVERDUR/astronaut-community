@@ -1,7 +1,6 @@
 
 package com.attornatus.community.model.dto.response;
 
-import java.util.Date;
 
 
 public class PersonResponseDetailsDto {
@@ -9,19 +8,20 @@ public class PersonResponseDetailsDto {
     private Integer id;
     private String name;
    
-    private Date birthdate;
+    private String birthdate;
     
-    private ListAddressResponseDto listAddress;
+    private Long idAddress;
 
     public PersonResponseDetailsDto() {
     }
 
-    public PersonResponseDetailsDto(Integer id, String name, Date birthdate, ListAddressResponseDto listAddress) {
+    public PersonResponseDetailsDto(Integer id, String name, String birthdate, Long idAddress) {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
-        this.listAddress = listAddress;
+        this.idAddress = idAddress;
     }
+
 
     public Integer getId() {
         return id;
@@ -39,22 +39,21 @@ public class PersonResponseDetailsDto {
         this.name = name;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
-    public ListAddressResponseDto getListAddress() {
-        return listAddress;
+    public Long getIdAddress() {
+        return idAddress;
     }
 
-    public void setListAddress(ListAddressResponseDto listAddress) {
-        this.listAddress = listAddress;
+    public void setIdAddress(Long idAddress) {
+        this.idAddress = idAddress;
     }
-    
-    
+ 
     
 }
