@@ -1,27 +1,25 @@
 
 package com.attornatus.community.model.dto.request;
 
-import com.attornatus.community.model.entity.Address;
+
 import java.util.Date;
-import java.util.List;
+
 
 public class PersonRequestDto {
     private String name;
    
     private Date birthdate;
    
-    private List<Address> address;
+    private Long idAddress;
 
     public PersonRequestDto() {
     }
 
-    public PersonRequestDto(String name, Date birthdate, List<Address> address) {
+    public PersonRequestDto(String name, Date birthdate, Long idAddress) {
         this.name = name;
         this.birthdate = birthdate;
-        this.address = address;
-    }
-
-   
+        this.idAddress = idAddress;
+    } 
 
     public String getName() {
         return name;
@@ -39,13 +37,16 @@ public class PersonRequestDto {
         this.birthdate = birthdate;
     }
 
-    public List<Address> getAddress() {
-        return address;
+    public Long getIdAddress() {
+        return idAddress;
     }
 
-    public void setAddress(List<Address> address) {
-        this.address = address;
+    public void setIdAddress(Long idAddress) {
+        this.idAddress = idAddress;
     }
+
+    
+  
      
     
 }
