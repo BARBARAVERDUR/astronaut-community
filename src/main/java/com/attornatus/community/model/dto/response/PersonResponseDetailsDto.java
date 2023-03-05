@@ -1,25 +1,25 @@
 
 package com.attornatus.community.model.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
+@JsonFormat
 public class PersonResponseDetailsDto {
     
     private Integer id;
     private String name;
    
     private String birthdate;
-    
-    private Long idAddress;
+
 
     public PersonResponseDetailsDto() {
     }
 
-    public PersonResponseDetailsDto(Integer id, String name, String birthdate, Long idAddress) {
+    public PersonResponseDetailsDto(Integer id, String name, String birthdate) {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
-        this.idAddress = idAddress;
     }
 
 
@@ -47,13 +47,6 @@ public class PersonResponseDetailsDto {
         this.birthdate = birthdate;
     }
 
-    public Long getIdAddress() {
-        return idAddress;
-    }
 
-    public void setIdAddress(Long idAddress) {
-        this.idAddress = idAddress;
-    }
- 
     
 }

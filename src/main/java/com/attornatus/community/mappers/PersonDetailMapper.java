@@ -5,49 +5,34 @@ import com.attornatus.community.model.dto.request.PersonRequestDto;
 import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
 import com.attornatus.community.model.entity.Address;
 import com.attornatus.community.model.entity.Person;
-import com.attornatus.community.repository.AddressRepository;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class PersonDetailMapper {
     
-    @Autowired
-    private AddressRepository addressRepository;
-    
-    public Person map(PersonRequestDto request){
- 
-        Optional<Address> addressResponse = addressRepository.findById(request.getIdAddress());
-        
-        Address address = new Address();
-        
-        if(addressResponse.isPresent()){
-            address = addressResponse.get();
-        }
-              
+    public Person map(PersonRequestDto request) throws ParseException{
+         
         Person person = new Person();
         
         person.setName(request.getName());
    
-
-        String requestDate = request.getBirthdate();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse((CharSequence) requestDate, formatter);
-        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    
+        String stringDate = request.getBirthdate();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = format.parse(stringDate);
         person.setBirthdate(date);
         
-        person.setAddress((List<Address>) address);
+        
+        
+        List <Address> addressList = new ArrayList <>();
+        addressList.add(request.getAddress());
+        
+        person.setAddress(addressList);
         
         return person;
     }
@@ -56,18 +41,10 @@ public class PersonDetailMapper {
         
         PersonResponseDetailsDto response = new PersonResponseDetailsDto();
        
-       Address address = new Address();
-       Long idAddress = null;
+         Address address = new Address();
        
-       for(Address a : person.getAddress()){
-           if(a.equals(address)){
-               idAddress = a.getId();           
-           }
-       }
-        
         response.setId(person.getId());
-        response.setName(person.getName());
-        response.setIdAddress(idAddress);
+        response.setName(person.getName()); 
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringDate = sdf.format(person.getBirthdate());
@@ -83,12 +60,12 @@ public class PersonDetailMapper {
        List<PersonResponseDetailsDto> listResponseDetail = new ArrayList<>();
        
        for(Person p : people){
-           listResponseDetail.add((PersonResponseDetailsDto) map(people));
+           listResponseDetail.add((PersonResponseDetailsDto) map(p));
        }
         
        return listResponseDetail; 
     }
     
-    
-    
+  
+
 }

@@ -42,7 +42,7 @@ public class AddressMapperDetail {
        List<AddressResponseDetailsDto> listResponseDetail = new ArrayList<>();
        
        for(Address address : addresses){
-           listResponseDetail.add((AddressResponseDetailsDto) map(addresses));
+           listResponseDetail.add((AddressResponseDetailsDto) map(address));
        }
         
        return listResponseDetail; 

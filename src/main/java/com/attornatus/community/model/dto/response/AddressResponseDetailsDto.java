@@ -1,7 +1,9 @@
 
 package com.attornatus.community.model.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+@JsonFormat
 public class AddressResponseDetailsDto{
     
     private Long id; 

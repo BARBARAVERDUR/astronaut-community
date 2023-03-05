@@ -1,8 +1,10 @@
 
 package com.attornatus.community.model.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.List;
 
+@JsonFormat
 public class ListPeopleResponseDto {
     
     private List<PersonResponseDetailsDto> listPeople;

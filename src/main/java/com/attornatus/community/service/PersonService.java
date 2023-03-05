@@ -10,6 +10,8 @@ import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
 import com.attornatus.community.model.entity.Address;
 import com.attornatus.community.model.entity.Person;
 import com.attornatus.community.repository.PersonRepository;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class PersonService {
     @Autowired
     private PersonDetailMapper mapperDetail;
     
-    public PersonResponseDetailsDto create(PersonRequestDto request){
+    public PersonResponseDetailsDto create(PersonRequestDto request) throws Exception{
         
         Person person = mapperDetail.map(request);    
         personRepository.save(person);
@@ -54,19 +56,13 @@ public class PersonService {
         Person person = findByID(id);
         
         person.setName(request.getName());
+
+        String stringDate =request.getBirthdate();  
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = format.parse(stringDate);
+        person.setBirthdate(date);
         
-        
-        
-        person.setBirthdate(request.getBirthdate());
-        
-        Long idAddresResponse = request.getIdAddress();
-        
-        Address address = person.getAddress().stream()
-                .filter(a -> a.getId().equals(idAddresResponse))
-                .findFirst()
-                .orElse(null);
-             
-        person.setAddress((List<Address>) address);
+        person.setAddress((List<Address>) request.getAddress());
   
         personRepository.save(person);
         return mapperDetail.map(person);
@@ -89,21 +85,7 @@ public class PersonService {
      return mapperDetail.map(findByID(id));   
     }
 
-    //favorite
    
-    public void favorite(Person person, Address address){
-        
-        List <Address> addresses = person.getAddress();
-        
-        for (Address a : addresses) {
-            if(a.equals(address)){
-                a.setFavorite(true);
-            }else{
-                a.setFavorite(false);
-            }
-        }
-    }
+    
 }
 
-
-//Hacer método con formateo de fecha en llamar en el Mapper

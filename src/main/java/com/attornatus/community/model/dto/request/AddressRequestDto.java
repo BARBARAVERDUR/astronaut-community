@@ -1,6 +1,9 @@
 
 package com.attornatus.community.model.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat
 public class AddressRequestDto {
     
     private String street;

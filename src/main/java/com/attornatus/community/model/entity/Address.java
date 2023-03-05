@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 
@@ -34,18 +36,23 @@ public class Address implements Serializable{
     
     @Column(name="FAVORITE")
     private Boolean favorite;
+    
+    @JoinColumn(name="ID_PERSON")
+    @ManyToOne
+    private Person person;
 
     
     public Address() {
     }
 
-    public Address(Long id, String street, String CEP, String number, String city, Boolean favorite) {
+    public Address(Long id, String street, String CEP, String number, String city, Boolean favorite, Person person) {
         this.id = id;
         this.street = street;
         this.CEP = CEP;
         this.number = number;
         this.city = city;
         this.favorite = favorite;
+        this.person = person;
     }
 
     
@@ -98,11 +105,21 @@ public class Address implements Serializable{
         this.favorite = favorite;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" + "id=" + id + ", street=" + street + ", CEP=" + CEP + ", number=" + number + ", city=" + city + ", favorite=" + favorite + '}';
+    public Person getPerson() {
+        return person;
     }
 
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" + "id=" + id + ", street=" + street + ", CEP=" + CEP + ", number=" + number + ", city=" + city + ", favorite=" + favorite + ", person=" + person + '}';
+    }
+    
+
+   
     
     
     

@@ -1,6 +1,7 @@
 
 package com.attornatus.community.controllers;
 
+import com.attornatus.community.model.dto.request.AddressRequestDto;
 import com.attornatus.community.model.dto.request.PersonRequestDto;
 import com.attornatus.community.model.dto.response.ListPeopleResponseDto;
 import com.attornatus.community.model.dto.response.PersonResponseDetailsDto;
@@ -10,6 +11,7 @@ import com.attornatus.community.repository.AddressRepository;
 import com.attornatus.community.repository.PersonRepository;
 import com.attornatus.community.service.PersonService;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -33,14 +35,12 @@ public class PersonController {
     
     @Autowired
     private PersonRepository personRepository;
+
     
-    @Autowired
-    private AddressRepository addressRepository;
-    
-    @PostMapping
+     @PostMapping
     @Transactional
-    public ResponseEntity<PersonResponseDetailsDto> save (@RequestBody PersonRequestDto request ){
-        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(personService.create(request));
+    public ResponseEntity<PersonResponseDetailsDto> save (@RequestBody PersonRequestDto request ) throws Exception{
+        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(personService.create(request ));
     }
     
     @GetMapping
@@ -57,7 +57,7 @@ public class PersonController {
     
     @GetMapping("/{id}")
     public ResponseEntity<PersonResponseDetailsDto> findById(@PathVariable Integer id) throws Exception{
-        return ResponseEntity.ok().body(personService.getResponseById(Integer.SIZE));
+        return ResponseEntity.ok().body(personService.getResponseById(id));
     }
     
     @PutMapping("/{id}")
@@ -68,19 +68,21 @@ public class PersonController {
         return ResponseEntity.ok().body(personService.update(request, id));
     }
     
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/{idAddress}")
     public ResponseEntity<PersonResponseDetailsDto> selectFavorite(
-    @PathVariable Integer id
+    @PathVariable Integer id, @PathVariable Long idAddress
     ) throws Exception{
         
-        PersonResponseDetailsDto personDto= personService.getResponseById(id);
-        
-        Long idAddress = personDto.getIdAddress();
-        
         Person person = personRepository.getById(id);
-        Address address = addressRepository.getById(idAddress);
-         
-        personService.favorite(person, address);
+        List<Address> address = person.getAddress();
+        for (Address a : address) {
+            if(a.getId().equals(idAddress)){
+                 a.setFavorite(true);
+            }else{
+                a.setFavorite(false);
+            }
+        } 
+        PersonResponseDetailsDto personDto = personService.getResponseById(id);
 
         return ResponseEntity.ok().body(personDto);
     }
